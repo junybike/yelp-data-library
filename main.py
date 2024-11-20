@@ -18,18 +18,23 @@ for row in cursor:
 if (db_auth.login(conn) == 0):
     exit(0)
 
-
-# SHOW MENU
+# SHOW MENU AND EXECUTE OPTION
 option = MAXINT
-while int(option) != 0:
+while option != 0:
 
     ui.display_menu()
     option = input("Enter the option (0 - 4): ")
-
-    if (int(option) < 0 or int(option) > 4):
+    if (not option):
         print("Invalid option :( \n")
+        continue
+    elif (int(option) < 0 or int(option) > 4):
+        print("Invalid option :( \n")
+        continue
 
-    ui.execute_task(option, conn)
+    if (ui.execute_task(int(option), conn)):
+        print("Task executed successfully :)\n")
+    else:
+        print("Task failed :( \n")
 
 # EXITING
 print("Exiting...")
