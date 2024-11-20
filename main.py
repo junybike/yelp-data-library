@@ -1,8 +1,5 @@
-from xmlrpc.client import MAXINT
-
 import pymssql
-import db_auth
-import ui
+from utilities import db_auth, ui
 
 # CONNECT TO THE DATABASE
 conn = pymssql.connect(host='cypress.csil.sfu.ca', user='s_jla890',
@@ -19,7 +16,7 @@ if (db_auth.login(conn) == 0):
     exit(0)
 
 # SHOW MENU AND EXECUTE OPTION
-option = MAXINT
+option = -1
 while option != 0:
 
     ui.display_menu()
