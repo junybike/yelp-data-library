@@ -21,6 +21,6 @@ def execute_task(conn, option, userid):
         case 3:
             success = make.friend(conn, userid)
         case 4:
-            success = review.business(conn)
+            success = review.business(conn, userid)
 
     return success

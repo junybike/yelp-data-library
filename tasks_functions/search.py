@@ -8,7 +8,7 @@ def business(conn):
     minstar = input("Set minimum stars (0 - 5): ")
     if not minstar:
         minstar = 0
-    elif float(minstar) < 0 or float(minstar) > 5:
+    elif minstar < "0" or minstar > "5":
         print("star must be between 0 and 5")
         return False
 
@@ -75,7 +75,7 @@ def users(conn):
     mincount = input("Set minimum review count: ")
     if not mincount:
         mincount = 0
-    elif float(mincount) < 0:
+    elif mincount < "0" or mincount > "9999999999":
         print("Review count must be greater than or equal to 0 ")
         return False
 
@@ -83,7 +83,7 @@ def users(conn):
     minavgstar = input("Set minimum average star: ")
     if not minavgstar:
         minavgstar = 0
-    elif float(minavgstar) < 0 or float(minavgstar) > 5:
+    elif minavgstar < "0" or minavgstar > "5":
         print("star must be between 0 and 5")
         return False
 
