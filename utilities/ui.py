@@ -11,7 +11,7 @@ def display_menu():
     print("0. Exit")
 
 # Executes the chosen task
-def execute_task(option, conn):
+def execute_task(conn, option, userid):
     success = True
     match option:
         case 1:
@@ -19,7 +19,7 @@ def execute_task(option, conn):
         case 2:
             success = search.users(conn)
         case 3:
-            success = make.friend(conn)
+            success = make.friend(conn, userid)
         case 4:
             success = review.business(conn)
 

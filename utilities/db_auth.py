@@ -20,7 +20,7 @@ def login(conn):
         if row is not None:
             login = True
             print("Login successful :)\n")
-            return 1
+            return userid
         else:
             print("Invalid user ID :(\n")
             attempt += 1
