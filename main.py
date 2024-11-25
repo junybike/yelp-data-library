@@ -20,8 +20,10 @@ if userid == 0:
 option = -1
 while True:
 
+    # The user selects the task. (Refer to ui.py for the list of tasks)
     ui.display_menu()
     option = input("Enter the option (0 - 4): ")
+
     if option < "0" or option > "4":
         print("Invalid option :( \n")
         continue
@@ -37,5 +39,6 @@ while True:
 print("Exiting...")
 exit(0)
 
+# SAMPLE USER ID AND BUSINESS ID FOR TESTING PURPOSES
 # __OdjK-F4MTdHkb8RtDFlQ
 # cVBxfMC4lp3DnocjYA3FHQ

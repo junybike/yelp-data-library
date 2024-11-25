@@ -1,6 +1,6 @@
 from tasks_functions import make, review, search
 
-
+# FUNCTION DEF
 # Displays the choices of option available
 def display_menu():
     print("=====DATABASE MENU=====")
@@ -10,6 +10,7 @@ def display_menu():
     print("4. Review Business")
     print("0. Exit")
 
+# FUNCTION DEF
 # Executes the chosen task
 def execute_task(conn, option, userid):
     success = True

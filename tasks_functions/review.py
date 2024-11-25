@@ -1,64 +1,13 @@
 from datetime import datetime
 
-def check(conn):
-    businessid = input("businessid: ")
-
-    cursor = conn.cursor(as_dict=True)
-    cursor.execute(
-        """
-        SELECT * 
-        FROM dbo.business
-        WHERE business_id = %s
-        """,
-        params = businessid
-    )
-    row = cursor.fetchone()
-    if row is None:
-        print("\nNo review exists!")
-        return False
-
-    print("\nThe review information:")
-    print(row, "\n")
-
-def test(conn, userid):
-    reviewid = input("reviewid: ")
-    businessid = input("businessid: ")
-
-    cursor = conn.cursor(as_dict=True)
-    cursor.execute(
-        """
-        SELECT * 
-        FROM dbo.review
-        WHERE business_id = %s
-        AND review_id = %s
-        AND user_id = %s
-        """,
-        params=(businessid, reviewid, userid)
-    )
-
-    row = cursor.fetchone()
-    if row is None:
-        print("\nNo review exists!")
-        return False
-
-    print("\nThe review information:")
-    print(row, "\n")
-
-
-
+# FUNCTION DEFINITION
+# To review a business
 def business(conn, userid):
 
     print("\n=====DATABASE REVIEW BUSINESS=====")
-
     businessid = input("Enter the Business ID to review: ")
 
-    if businessid == "test":
-        test(conn, userid)
-        return 1
-    if businessid == "check":
-        check(conn)
-        return 1
-
+    # SQL Query to check if the 'businessid' exists in the database.
     cursor = conn.cursor(as_dict=True)
     cursor.execute(
         """
@@ -74,9 +23,11 @@ def business(conn, userid):
         print("\nNo business exists!")
         return False
 
+    # Displays the info of business with the 'businessid'.
     print("\nThe business information:")
     print(row, "\n")
 
+    # The user rates the business.
     rate = input("Rate star for the business (1 - 5): ")
     if not rate:
         print("\nInvalid input :(")
@@ -85,10 +36,11 @@ def business(conn, userid):
         print("\nInvalid input :(")
         return False
 
+    # The new review ID generated for this review.
     reviewid = userid[-3:] + str(datetime.now())[:-7]
-    #reviewid = str(userid) + str(datetime.now())
     print("\nThe new review ID: \n" + reviewid)
 
+    # SQL Query to insert the new review to the database.
     cursor = conn.cursor(as_dict=True)
     cursor.execute(
         """

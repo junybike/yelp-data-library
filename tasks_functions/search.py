@@ -1,3 +1,4 @@
+# FUNCTION DEF:
 # TO SEARCH BUSINESS(ES) WITH SPECIFIC CRITERIA
 def business(conn):
 
@@ -31,7 +32,7 @@ def business(conn):
             case 3:
                 sortoption = "stars"
 
-    # SQL query
+    # SQL Query to get all businesses that matches the criteria.
     cursor = conn.cursor(as_dict=True)
     cursor.execute(
         """
@@ -45,15 +46,16 @@ def business(conn):
         params = (float(minstar), city, name, sortoption)
     )
 
-    i = 0
-    row = cursor.fetchone()
+    i = 0 # A counter
+    row = cursor.fetchone() # The first info of the business fetched from the database
 
-    # To display the result.
+    # To display the result. It displays maximum 10 businesses at a time.
     if row is not None:
         while row is not None:
             print("row " + str(i + 1) + ": ", row)
             i += 1
 
+            # Asks the user if they want more businesses to be displayed
             if i % 10 == 0:
                 if int(input("\nType 1 to continue, 0 to stop ")) == 0:
                     break
@@ -65,6 +67,8 @@ def business(conn):
     return True
 
 
+
+# FUNCTION DEF:
 # TO SEARCH USER(S) WITH SPECIFIC CRITERIA
 def users(conn):
 
@@ -87,10 +91,10 @@ def users(conn):
         print("star must be between 0 and 5")
         return False
 
-    # To search a name (or part of the name)
+    # A name to search (or part of the name)
     name = input("User name to search: ")
 
-    # SQL query
+    # SQL Query to search a user that matches the criteria.
     cursor = conn.cursor(as_dict=True)
     cursor.execute(
         """
@@ -104,15 +108,16 @@ def users(conn):
         params = (int(mincount), float(minavgstar), name)
     )
 
-    i = 0
-    row = cursor.fetchone()
+    i = 0 # A counter
+    row = cursor.fetchone() # The info of the first user fetched from the database.
 
-    # To display the result.
+    # To display the result. It displays maximum 10 users at a time.
     if row is not None:
         while row is not None:
             print("row " + str(i + 1) + ": ", row)
             i += 1
 
+            # Asks the user if they want more businesses to be displayed
             if i % 10 == 0:
                 if int(input("\nType 1 to continue, 0 to stop ")) == 0:
                     break
