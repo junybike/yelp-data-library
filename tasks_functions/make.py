@@ -55,7 +55,7 @@ def friend(conn, userid):
     )
     conn.commit()
 
-    print("Make friend successful!\n")
+    print("\nMake friend successful!")
 
     return True
 
