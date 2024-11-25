@@ -1,9 +1,8 @@
 def login(conn):
 
-    login = False
     attempt = 0
 
-    while (not login):
+    while attempt < 3:
 
         print("=====DATABASE LOGIN=====")
         print("Enter your user ID. (attempts:" + str(attempt + 1) + "/3)")
@@ -14,11 +13,11 @@ def login(conn):
             'SELECT user_id \
             FROM dbo.user_yelp \
             WHERE user_id = %s',
-            params=(userid))
+            params = userid
+        )
 
         row = cursor.fetchone()
         if row is not None:
-            login = True
             print("Login successful :)\n")
             return userid
         else:
