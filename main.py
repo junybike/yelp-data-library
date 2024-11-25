@@ -1,4 +1,5 @@
 import pymssql
+import time
 from utilities import db_auth, ui
 
 # CONNECT TO THE DATABASE
@@ -35,6 +36,8 @@ while True:
 
 # EXITING
 print("Exiting...")
+time.sleep(3)
+
 exit(0)
 
 # 0ICfbEImE0gUZc4kSZ7QHg

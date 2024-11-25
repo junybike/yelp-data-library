@@ -1,8 +1,27 @@
 from datetime import datetime
 
+def check(conn):
+    businessid = input("businessid: ")
+
+    cursor = conn.cursor(as_dict=True)
+    cursor.execute(
+        """
+        SELECT * 
+        FROM dbo.business
+        WHERE business_id = %s
+        """,
+        params = businessid
+    )
+    row = cursor.fetchone()
+    if row is None:
+        print("\nNo review exists!")
+        return False
+
+    print("\nThe review information:")
+    print(row, "\n")
+
 def test(conn, userid):
     reviewid = input("reviewid: ")
-    userid = input("userid: ")
     businessid = input("businessid: ")
 
     cursor = conn.cursor(as_dict=True)
@@ -18,7 +37,7 @@ def test(conn, userid):
     )
 
     row = cursor.fetchone()
-    if (row is None):
+    if row is None:
         print("\nNo review exists!")
         return False
 
@@ -36,6 +55,9 @@ def business(conn, userid):
     if businessid == "test":
         test(conn, userid)
         return 1
+    if businessid == "check":
+        check(conn)
+        return 1
 
     cursor = conn.cursor(as_dict=True)
     cursor.execute(
@@ -44,11 +66,11 @@ def business(conn, userid):
         FROM dbo.business
         WHERE business_id = %s
         """,
-        params=(businessid)
+        params = businessid
     )
 
     row = cursor.fetchone()
-    if (row is None):
+    if row is None:
         print("\nNo business exists!")
         return False
 
@@ -56,11 +78,15 @@ def business(conn, userid):
     print(row, "\n")
 
     rate = input("Rate star for the business (1 - 5): ")
-    if (rate < "1" or rate > "5"):
+    if not rate:
+        print("\nInvalid input :(")
+        return False  
+    elif rate < "1" or rate > "5":
         print("\nInvalid input :(")
         return False
 
-    reviewid = userid + str(datetime.now())
+    reviewid = userid[-3:] + str(datetime.now())[:-7]
+    #reviewid = str(userid) + str(datetime.now())
     print("\nThe new review ID: \n" + reviewid)
 
     cursor = conn.cursor(as_dict=True)
@@ -71,6 +97,7 @@ def business(conn, userid):
         """,
         (reviewid, userid, businessid, int(rate))
     )
+    conn.commit()
 
     print("\nReview successful!\n")
 

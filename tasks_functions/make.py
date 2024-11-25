@@ -2,8 +2,8 @@ def friend(conn, userid):
 
     print("\n=====DATABASE MAKE FRIEND=====")
 
-    friend = input("Enter the user ID to be friend with: ")
-    if (friend == userid):
+    friendwith = input("Enter the user ID to be friend with: ")
+    if friendwith == userid:
         print("\nCannot friend your self!")
         return False
 
@@ -14,11 +14,11 @@ def friend(conn, userid):
         FROM dbo.user_yelp
         WHERE user_id = %s
         """,
-        params=(friend)
+        params = friendwith
     )
 
     row = cursor.fetchone()
-    if (row is None):
+    if row is None:
         print("\nNo user exists!")
         return False
 
@@ -30,10 +30,10 @@ def friend(conn, userid):
         WHERE user_id = %s
         AND friend = %s
         """,
-        params=(userid, friend)
+        params = (userid, friendwith)
     )
     newrow = cursor.fetchone()
-    if (newrow is not None):
+    if newrow is not None:
         print("\nYou are already friends with this user!")
         return False
 
@@ -41,7 +41,7 @@ def friend(conn, userid):
     print(row)
 
     confirm = input("Add friend with the user? (1. yes, 0. no): ")
-    if (confirm != "1"):
+    if confirm != "1":
         print("Make friend cancelled!")
         return False
 
@@ -51,11 +51,11 @@ def friend(conn, userid):
         INSERT INTO dbo.friendship(user_id, friend)
         VALUES(%s, %s)
         """,
-        (userid, friend)
+        (userid, friendwith)
     )
     conn.commit()
 
-    print("Make friend successful!\n")
+    print("\nMake friend successful!")
 
     return True
 

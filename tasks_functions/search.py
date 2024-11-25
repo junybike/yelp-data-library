@@ -5,10 +5,10 @@ def business(conn):
     print("*Leave sections blank if certain criteria is not needed*\n")
 
     # Set minimum star to search. Default minstar: 0
-    minstar = input("Set minimum stars (0 - 5): ")
+    minstar = input("Set minimum stars (1 - 5): ")
     if not minstar:
         minstar = 0
-    elif minstar < "0" or minstar > "5":
+    elif minstar < "1" or minstar > "5":
         print("star must be between 0 and 5")
         return False
 
@@ -54,8 +54,8 @@ def business(conn):
             print("row " + str(i + 1) + ": ", row)
             i += 1
 
-            if (i % 10 == 0):
-                if (int(input("\nType 1 to continue, 0 to stop ")) == 0):
+            if i % 10 == 0:
+                if int(input("\nType 1 to continue, 0 to stop ")) == 0:
                     break
                 print("\n")
             row = cursor.fetchone()
@@ -113,8 +113,8 @@ def users(conn):
             print("row " + str(i + 1) + ": ", row)
             i += 1
 
-            if (i % 10 == 0):
-                if (int(input("\nType 1 to continue, 0 to stop ")) == 0):
+            if i % 10 == 0:
+                if int(input("\nType 1 to continue, 0 to stop ")) == 0:
                     break
                 print("\n")
             row = cursor.fetchone()
