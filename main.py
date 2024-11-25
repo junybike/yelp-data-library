@@ -1,5 +1,4 @@
 import pymssql
-import time
 from utilities import db_auth, ui
 
 # CONNECT TO THE DATABASE
@@ -14,7 +13,7 @@ for row in cursor:
 
 # LOGIN SECTION
 userid = db_auth.login(conn)
-if (userid == 0):
+if userid == 0:
     exit(0)
 
 # SHOW MENU AND EXECUTE OPTION
@@ -23,21 +22,20 @@ while True:
 
     ui.display_menu()
     option = input("Enter the option (0 - 4): ")
-    if (option < "0" or option > "4"):
+    if option < "0" or option > "4":
         print("Invalid option :( \n")
         continue
-    elif (option == "0"):
+    elif option == "0":
         break
 
-    if (ui.execute_task(conn, int(option), userid)):
+    if ui.execute_task(conn, int(option), userid):
         print("Task executed successfully :)\n")
     else:
         print("Task failed :( \n")
 
 # EXITING
 print("Exiting...")
-time.sleep(3)
-
 exit(0)
 
-# 0ICfbEImE0gUZc4kSZ7QHg
+# __OdjK-F4MTdHkb8RtDFlQ
+# cVBxfMC4lp3DnocjYA3FHQ
