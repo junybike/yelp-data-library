@@ -9,7 +9,8 @@ conn = pymssql.connect(host='cypress.csil.sfu.ca', user='s_jla890',
 cursor = conn.cursor(as_dict=True)
 cursor.execute('SELECT TOP(3) * FROM dbo.User_yelp')
 for row in cursor:
-    print ('row:', row)
+    print("User ID:", row["user_id"])
+    print("Name:   ", row["name"])
 
 # LOGIN SECTION
 userid = db_auth.login(conn)

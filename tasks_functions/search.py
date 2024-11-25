@@ -51,6 +51,7 @@ def business(conn):
 
     # To display the result. It displays maximum 10 businesses at a time.
     if row is not None:
+        # print("Business ID \t\t\t Name \t\t\t\t Address \t\t\t\t City \t\t\t Postal_code \t Stars \t Review Count")
         while row is not None:
             print("row " + str(i + 1) + ": ", row)
             i += 1
