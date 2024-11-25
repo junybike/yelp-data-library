@@ -1,8 +1,27 @@
 from datetime import datetime
 
+def check(conn):
+    businessid = input("businessid: ")
+
+    cursor = conn.cursor(as_dict=True)
+    cursor.execute(
+        """
+        SELECT * 
+        FROM dbo.business
+        WHERE business_id = %s
+        """,
+        params = businessid
+    )
+    row = cursor.fetchone()
+    if row is None:
+        print("\nNo review exists!")
+        return False
+
+    print("\nThe review information:")
+    print(row, "\n")
+
 def test(conn, userid):
     reviewid = input("reviewid: ")
-    userid = input("userid: ")
     businessid = input("businessid: ")
 
     cursor = conn.cursor(as_dict=True)
@@ -18,7 +37,7 @@ def test(conn, userid):
     )
 
     row = cursor.fetchone()
-    if (row is None):
+    if row is None:
         print("\nNo review exists!")
         return False
 
@@ -33,9 +52,12 @@ def business(conn, userid):
 
     businessid = input("Enter the Business ID to review: ")
 
-    # if businessid == "test":
-    #     test(conn, userid)
-    #     return 1
+    if businessid == "test":
+        test(conn, userid)
+        return 1
+    if businessid == "check":
+        check(conn)
+        return 1
 
     cursor = conn.cursor(as_dict=True)
     cursor.execute(
@@ -44,11 +66,11 @@ def business(conn, userid):
         FROM dbo.business
         WHERE business_id = %s
         """,
-        params=(businessid)
+        params = businessid
     )
 
     row = cursor.fetchone()
-    if (row is None):
+    if row is None:
         print("\nNo business exists!")
         return False
 
@@ -63,23 +85,20 @@ def business(conn, userid):
         print("\nInvalid input :(")
         return False
 
-    # reviewid = userid[:-5] + str(datetime.now())
-    # reviewid = str(userid) + str(datetime.now())
-    # print("\nThe new review ID: \n" + reviewid)
+    reviewid = userid[-3:] + str(datetime.now())[:-7]
+    #reviewid = str(userid) + str(datetime.now())
+    print("\nThe new review ID: \n" + reviewid)
 
-    print("SQL statement")
-
-    # cursor = conn.cursor(as_dict=True)
-    # cursor.execute(
-    #     """
-    #     INSERT INTO dbo.review(review_id, user_id, business_id, stars)
-    #     VALUES(%s, %s, %s, %s)
-    #     """,
-    #     (reviewid, userid, businessid, int(rate))
-    # )
+    cursor = conn.cursor(as_dict=True)
+    cursor.execute(
+        """
+        INSERT INTO dbo.review(review_id, user_id, business_id, stars)
+        VALUES(%s, %s, %s, %s)
+        """,
+        (reviewid, userid, businessid, int(rate))
+    )
+    conn.commit()
 
     print("\nReview successful!\n")
 
     return True
-    # __OdjK-F4MTdHkb8RtDFlQ
-    # cVBxfMC4lp3DnocjYA3FHQ
