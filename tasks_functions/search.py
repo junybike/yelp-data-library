@@ -57,7 +57,7 @@ def business(conn):
 
             # Asks the user if they want more businesses to be displayed
             if i % 10 == 0:
-                if int(input("\nType 1 to continue, 0 to stop ")) == 0:
+                if input("\nType 1 to continue, 0 to stop ") != "1":
                     break
                 print("\n")
             row = cursor.fetchone()

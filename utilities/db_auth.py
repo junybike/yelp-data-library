@@ -10,6 +10,15 @@ def login(conn):
         print("Enter your user ID. (attempts:" + str(attempt + 1) + "/3)")
         userid = input("ID: ")
 
+        # To handle inputting nothing in 'userid'
+        if not userid:
+            print("Invalid user ID :(\n")
+            attempt += 1
+            if attempt >= 3:
+                print("Too many attempts :( Shutting down...")
+                return 0
+            continue
+
         # SQL Query to check if 'ID' exists in database.
         cursor = conn.cursor(as_dict=True)
         cursor.execute(

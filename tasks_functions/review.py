@@ -29,10 +29,7 @@ def business(conn, userid):
 
     # The user rates the business.
     rate = input("Rate star for the business (1 - 5): ")
-    if not rate:
-        print("\nInvalid input :(")
-        return False  
-    elif rate < "1" or rate > "5":
+    if not rate and (rate < "1" or rate > "5"):
         print("\nInvalid input :(")
         return False
 

@@ -24,7 +24,7 @@ while True:
     ui.display_menu()
     option = input("Enter the option (0 - 4): ")
 
-    if option < "0" or option > "4":
+    if not option and (option < "0" or option > "4"):
         print("Invalid option :( \n")
         continue
     elif option == "0":
