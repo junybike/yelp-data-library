@@ -24,12 +24,13 @@ def business(conn, userid):
         return False
 
     # Displays the info of business with the 'businessid'.
-    print("\nThe business information:")
-    print(row, "\n")
+    print("\nThe business information:\n")
+    print(" Business ID: ", row["business_id"], "\n", "Name: ", row["name"], "\n", "Address: ", row["address"], "\n",
+          "City: ", row["city"], "\n", "Postal Code: ", row["postal_code"], "\n", "Stars", row["stars"])
 
     # The user rates the business.
-    rate = input("Rate star for the business (1 - 5): ")
-    if not rate and (rate < "1" or rate > "5"):
+    rate = input("\nRate star for the business (1 - 5): ")
+    if not rate or rate < "1" or rate > "5":
         print("\nInvalid input :(")
         return False
 

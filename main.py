@@ -37,7 +37,7 @@ while True:
         print("Task failed :( \n")
 
 # EXITING
-print("Exiting...")
+print("\n Exiting...")
 exit(0)
 
 # SAMPLE USER ID AND BUSINESS ID FOR TESTING PURPOSES

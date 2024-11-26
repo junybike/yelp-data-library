@@ -45,13 +45,15 @@ def friend(conn, userid):
         return False
 
     # Displays the info of user with 'friendwith' user ID  
-    print("\nThe user information:")
-    print(row)
+    print("\nThe user information:\n")
+    print(" User ID: ", row["user_id"], "\n", "Name: ", row["name"], "\n", "Review Count: ", row["review_count"], "\n",
+          "Yelping Since: ", row["yelping_since"], "\n", " Useful: ", row["useful"], " Funny: ", row["funny"], " Cool: ", row["cool"], "\n",
+          "Fans ", row["fans"], "\n", "Average stars: ", row["average_stars"])
 
     # Confirmation
-    confirm = input("Add friend with the user? (1. yes, 0. no): ")
+    confirm = input("\nAdd friend with the user? (1. yes, 0. no): ")
     if confirm != "1":
-        print("Make friend cancelled!")
+        print("\nMake friend cancelled!")
         return False
 
     # SQL Query to insert a new friendship
