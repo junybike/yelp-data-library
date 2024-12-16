@@ -1,10 +1,11 @@
-# The Yelpers  
+# Yelp Data Library  
+Yelp Data Library is designed with the MS SQL database ODBC in Python.  
 
-The Yelpers is a database project from CMPT 354.  
-Users of The Yelpers can leave a rating on a store or restaurant with a variety of features
+## What is "Yelp"?  
+Yelp is the name of a database containing businesses, business reviewers (the users), and business review information.  
 
 ## How to Run
-This requires the private SFU CSIL database password.  
+This requires the private SFU CSIL database password and SFU network connection.  
 Run the ```main.py``` on the latest Python Interpreter with ```pymssql``` installed.  
 
 ## Features  
