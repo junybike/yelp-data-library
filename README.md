@@ -1,5 +1,5 @@
 # Yelp Data Library  
-Yelp Data Library is designed with the MS SQL database ODBC in Python.  
+Yelp Data Library is designed with the MS SQL database and ODBC in Python.  
 
 ## What is "Yelp"?  
 Yelp is the name of a database containing businesses, business reviewers (the users), and business review information.  
